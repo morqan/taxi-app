@@ -8,7 +8,7 @@ export function * getUserAvatar (api, action) {
   const response = yield call(api.getUser, username)
 
   if (response.ok) {
-    const firstUser = path(['data', 'items'], response)[0]
+    const firstUser = path(['orders.json.json.js', 'items'], response)[0]
     const avatar = firstUser.avatar_url
     // do data conversion here if needed
     yield put(GithubActions.userSuccess(avatar))

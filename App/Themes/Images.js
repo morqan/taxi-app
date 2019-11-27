@@ -1,6 +1,7 @@
 // leave off @2x/@3x
 const images = {
   logo: require('../Images/ir.png'),
+  ekonomCarIcon: require('../Images/ekonomCar.png'),
   clearLogo: require('../Images/top_logo.png'),
   launch: require('../Images/launch-icon.png'),
   ready: require('../Images/your-app.png'),
@@ -19,7 +20,14 @@ const images = {
   chevronRight: require('../Images/Icons/chevron-right.png'),
   hamburger: require('../Images/Icons/hamburger.png'),
   backButton: require('../Images/Icons/back-button.png'),
-  closeButton: require('../Images/Icons/close-button.png')
+  closeButton: require('../Images/Icons/close-button.png'),
+  right: require('../Images/Icons/right.png'),
+  ellipse: require('../Images/Icons/Ellipse.png'),
+  marker: require('../Images/Icons/marker.png'),
+  news: require('../Images/news1.jpg'),
+  news1: require('../Images/News2.jpg'),
+  news2: require('../Images/news3.png')
+
 }
 
 export default images
