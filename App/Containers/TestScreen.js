@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView, Image, View, FlatList } from 'react-native'
+import { Text, Image, View, FlatList } from 'react-native'
 import { connect } from 'react-redux'
-import { Images } from '../Themes'
 import DATA from '../Fixtures/DATA'
 import MyButton from '../Components/MyButton'
 import Dash from 'react-native-dash'

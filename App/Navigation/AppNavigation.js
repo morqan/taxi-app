@@ -1,4 +1,5 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation'
+import OrderScreen from '../Containers/OrderScreen'
 import Gain2Screen from '../Containers/Gain2Screen'
 import PaymentMethodScreen from '../Containers/PaymentMethodScreen'
 import AddCrediCardScreen from '../Containers/AddCrediCardScreen'
@@ -13,6 +14,18 @@ import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = createStackNavigator({
+  OrderScreen: {
+    screen: OrderScreen,
+    navigationOptions: {
+      title: 'Order',
+      headerStyle: {
+        backgroundColor: '#451E5D'
+      },
+      headerTitleStyle: {
+        color: '#FFFFFF'
+      }
+    }
+  },
   Gain2Screen: {
     screen: Gain2Screen,
     navigationOptions: {
@@ -112,7 +125,7 @@ const PrimaryNav = createStackNavigator({
 }, {
   // Default config for all screens
 
-  initialRouteName: 'GainScreen',
+  initialRouteName: 'OrderScreen',
   navigationOptions: {
     headerStyle: styles.header
   }
