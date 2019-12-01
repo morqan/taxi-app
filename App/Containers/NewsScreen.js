@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { ScrollView, KeyboardAvoidingView, Image, FlatList, View,TouchableOpacity } from 'react-native'
+import { ScrollView, KeyboardAvoidingView, Image, FlatList, View, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import news from '../Fixtures/news'
-import { Container, Content, Text, } from 'native-base'
+import { Container, Content, Text } from 'native-base'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
