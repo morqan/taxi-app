@@ -1,4 +1,5 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation'
+import DriverOrederScreen from '../Containers/DriverOrederScreen'
 import RatingsScreen from '../Containers/RatingsScreen'
 import OrderScreen from '../Containers/OrderScreen'
 import Gain2Screen from '../Containers/Gain2Screen'
@@ -15,6 +16,18 @@ import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = createStackNavigator({
+  DriverOrederScreen: {
+    screen: DriverOrederScreen,
+    navigationOptions: {
+      title: 'DriverOrederScreen',
+      headerStyle: {
+        backgroundColor: '#451E5D'
+      },
+      headerTitleStyle: {
+        color: '#FFFFFF'
+      }
+    }
+  },
   RatingsScreen: {
     screen: RatingsScreen,
     navigationOptions: {
@@ -138,7 +151,7 @@ const PrimaryNav = createStackNavigator({
 }, {
   // Default config for all screens
 
-  initialRouteName: 'RatingsScreen',
+  initialRouteName: 'DriverOrederScreen',
   navigationOptions: {
     headerStyle: styles.header
   }
