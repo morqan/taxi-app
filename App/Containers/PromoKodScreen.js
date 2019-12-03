@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, KeyboardAvoidingView } from 'react-native'
+import { View, Text, KeyboardAvoidingView, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import CodeInput from 'react-native-code-input'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
@@ -10,6 +10,75 @@ import styles from './Styles/PromoKodScreenStyle'
 import MyButton from '../Components/MyButton'
 
 class PromoKodScreen extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      code: ''
+    };
+  }
+
+  _onFulfill(code) {
+    // TODO: call API to check code here
+    // If code does not match, clear input with: this.refs.codeInputRef1.clear()
+    if (code == '123456') {
+      Alert.alert(
+        'Confirmation Code',
+        'Successful!',
+        [{text: 'OK'}],
+        { cancelable: false }
+      );
+    } else {
+      Alert.alert(
+        'Confirmation Code',
+        'Code not match!',
+        [{text: 'OK'}],
+        { cancelable: false }
+      );
+
+      this.refs.codeInputRef1.clear();
+    }
+  }
+
+  _onFinishCheckingCode1 (isValid) {
+    console.log(isValid);
+    if (!isValid) {
+      Alert.alert(
+        'Confirmation Code',
+        'Code not match!',
+        [{text: 'OK'}],
+        { cancelable: false }
+      );
+    } else {
+      Alert.alert(
+        'Confirmation Code',
+        'Successful!',
+        [{text: 'OK'}],
+        { cancelable: false }
+      );
+    }
+  }
+
+  _onFinishCheckingCode2(isValid, code) {
+    console.log(isValid);
+    if (!isValid) {
+      Alert.alert(
+        'Confirmation Code',
+        'Code not match!',
+        [{text: 'OK'}],
+        { cancelable: false }
+      );
+    } else {
+      this.setState({ code });
+      Alert.alert(
+        'Confirmation Code',
+        'Successful!',
+        [{text: 'OK'}],
+        { cancelable: false }
+      );
+    }
+  }
+
   render () {
     return (
       <View style={styles.container}>
@@ -19,15 +88,18 @@ class PromoKodScreen extends Component {
             <KeyboardAvoidingView behavior='position'  style={{ borderBottomWidth: 1}}>
               <CodeInput
                 ref="codeInputRef2"
-                secureTextEntry
                 borderType='circle'
                 activeColor='#7C7C7C'
                 inactiveColor='#7C7C7C'
-                autoFocus={false}
+                autoFocus={true}
+                ignoreCase={true}
+                onFulfill={(isValid) => this._onFinishCheckingCode1(isValid)}
+                onCodeChange={(code) => { this.state.code = code }}
                 inputPosition='center'
                 codeLength={6}
+                compareWithCode='123456'
+                keyboardType="numeric"
                 size={25}
-                onFulfill={(code) => this._onFinishCheckingCode1(code)}
                 containerStyle={{ marginTop: 40, marginBottom: 45}}
                 codeInputStyle={{ borderWidth: 0, backgroundColor: '#D9D9DA' }}
               />

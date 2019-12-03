@@ -26,7 +26,10 @@ const images = {
   marker: require('../Images/Icons/marker.png'),
   news: require('../Images/news1.jpg'),
   news1: require('../Images/News2.jpg'),
-  news2: require('../Images/news3.png')
+  news2: require('../Images/news3.png'),
+  walker: require('../Images/pedestrian.png'),
+  car: require('../Images/car.png'),
+  bike: require('../Images/motorbike.png')
 
 }
 
