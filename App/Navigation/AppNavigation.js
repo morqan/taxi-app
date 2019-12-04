@@ -1,4 +1,5 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation'
+import ModalScreen from '../Containers/ModalScreen'
 import RadioScreen from '../Containers/RadioScreen'
 import ProfileScreen from '../Containers/ProfileScreen'
 import DriverOrederScreen from '../Containers/DriverOrederScreen'
@@ -18,6 +19,18 @@ import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = createStackNavigator({
+  ModalScreen: {
+    screen: ModalScreen,
+    navigationOptions: {
+      title: 'ModalScreen',
+      headerStyle: {
+        backgroundColor: '#451E5D'
+      },
+      headerTitleStyle: {
+        color: '#FFFFFF'
+      }
+    }
+  },
   RadioScreen: {
     screen: RadioScreen,
     navigationOptions: {
@@ -127,7 +140,7 @@ const PrimaryNav = createStackNavigator({
     }
   },
   PromoKodScreen: {
-    screen: PromoKodScreen ,
+    screen: PromoKodScreen,
     navigationOptions: {
       title: 'Promo kod',
       headerStyle: {
@@ -177,7 +190,7 @@ const PrimaryNav = createStackNavigator({
 }, {
   // Default config for all screens
 
-  initialRouteName: 'RadioScreen',
+  initialRouteName: 'ModalScreen',
   navigationOptions: {
     headerStyle: styles.header
   }
