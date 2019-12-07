@@ -190,21 +190,21 @@ class ModalScreen extends Component {
 
         <Modal
           onTouchOutside={() => {
-            this.setState({ scaleAnimationModal: false });
+            this.setState({ scaleAnimationModal: false })
           }}
           width={0.9}
           visible={this.state.scaleAnimationModal}
           onSwipeOut={() => this.setState({ scaleAnimationModal: false })}
           modalAnimation={new ScaleAnimation()}
           onHardwareBackPress={() => {
-            console.log('onHardwareBackPress');
-            this.setState({ scaleAnimationModal: false });
-            return true;
+            console.log('onHardwareBackPress')
+            this.setState({ scaleAnimationModal: false })
+            return true
           }}
           modalTitle={
             <ModalTitle
-              title="BİLDİRİŞ"
-              align="center"
+              title='BİLDİRİŞ'
+              align='center'
               style={styles.notificationTitle}
               textStyle={styles.notificationTitle}
             />
@@ -212,32 +212,32 @@ class ModalScreen extends Component {
           footer={
             <ModalFooter>
               <ModalButton
-                text="CANCEL"
+                text='CANCEL'
                 textStyle={{ color: '#451E5D', fontWeight: 'bold' }}
                 bordered
                 onPress={() => {
                   this.setState({ scaleAnimationModal: false });
                 }}
-                key="button-1" />
+                key='button-1' />
               <ModalButton
-                text="OK"
+                text='OK'
                 style={{ backgroundColor: '#451E5D' }}
                 textStyle={{ color: '#fff', fontWeight: 'bold' }}
                 bordered
                 onPress={() => {
                   this.setState({ scaleAnimationModal: false });
                 }}
-                key="button-2"
+                key='button-2'
               />
             </ModalFooter>
           }
         >
           <ModalContent
-            style={{ backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center',height: 80  }}  >
-           <View style={{ backgroundColor: '#fff'  }}>
-             <Text style={styles.notificationTextB}>BALANSINIZ 3 AZN TƏŞKİL EDİR.</Text>
-             <Text style={styles.notificationTextR}>ZƏHMƏT OLMASA BALANSINIZI ARTIRIN.</Text>
-           </View>
+            style={{ backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center',height: 80  }} >
+            <View style={{ backgroundColor: '#fff'  }}>
+              <Text style={styles.notificationTextB}>BALANSINIZ 3 AZN TƏŞKİL EDİR.</Text>
+              <Text style={styles.notificationTextR}>ZƏHMƏT OLMASA BALANSINIZI ARTIRIN.</Text>
+            </View>
 
           </ModalContent>
         </Modal>

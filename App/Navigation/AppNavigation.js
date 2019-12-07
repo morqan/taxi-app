@@ -1,4 +1,5 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation'
+import InvoiceScreen from '../Containers/InvoiceScreen'
 import ModalScreen from '../Containers/ModalScreen'
 import RadioScreen from '../Containers/RadioScreen'
 import ProfileScreen from '../Containers/ProfileScreen'
@@ -19,6 +20,18 @@ import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
 const PrimaryNav = createStackNavigator({
+  InvoiceScreen: {
+    screen: InvoiceScreen,
+    navigationOptions: {
+      title: 'Balans',
+      headerStyle: {
+        backgroundColor: '#451E5D'
+      },
+      headerTitleStyle: {
+        color: '#FFFFFF'
+      }
+    }
+  },
   ModalScreen: {
     screen: ModalScreen,
     navigationOptions: {
@@ -116,7 +129,7 @@ const PrimaryNav = createStackNavigator({
     }
   },
   AddCrediCardScreen: {
-    screen: AddCrediCardScreen ,
+    screen: AddCrediCardScreen,
     navigationOptions: {
       title: 'Kart əlavə et',
       headerStyle: {
@@ -190,7 +203,7 @@ const PrimaryNav = createStackNavigator({
 }, {
   // Default config for all screens
 
-  initialRouteName: 'ModalScreen',
+  initialRouteName: 'InvoiceScreen',
   navigationOptions: {
     headerStyle: styles.header
   }
