@@ -26,7 +26,7 @@
 | 5 | UI-kit | **NativeWind v4 + gluestack-ui v2** | заменяет native-base v2; Tailwind-стиль + готовые компоненты; легче Tamagui для solo |
 | 6 | i18n | **i18next + react-i18next + expo-localization** | мигрирует существующий формат `App/I18n/languages`; зрелый, заменяет deprecated react-native-i18n |
 | 7 | Карты/гео | **MapLibre + Nominatim (геокодинг) + OSRM (маршруты)** | бесплатный OSM-стек для dev/MVP; за адаптером, чтобы платный провайдер подменялся в prod |
-| 8 | Mock-бэкенд | **MSW (основной) + json-server (ручное)** | один мок для приложения и тестов (network-level); json-server опционально для Postman |
+| 8 | Mock-бэкенд | **MSW (основной) + json-server (ручное)** | network-level мок для разработки приложения; json-server опционально для Postman |
 
 ## Trade-off (ключевое)
 
@@ -48,5 +48,6 @@
 4. [ ] Перенос экранов Flow→TS поверх нового UI-kit
 5. [ ] i18n-миграция словарей
 6. [ ] Карта/гео адаптер (MapLibre + Nominatim + OSRM)
-7. [ ] Тесты (Jest + Testing Library RN) критичных flow + CI-gate
-8. [ ] decision.md (baseline→final Score) + PR на review
+7. [ ] decision.md (baseline→final Score) + PR на review
+
+> Примечание (2026-06-17): автотесты исключены из объёма по решению владельца. CI-gate = typecheck + lint + build.
