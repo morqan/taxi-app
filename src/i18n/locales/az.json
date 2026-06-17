@@ -1,0 +1,79 @@
+{
+  "common": {
+    "cancel": "Ləğv et",
+    "save": "Yadda saxla",
+    "apply": "Tətbiq et",
+    "delete": "Sil",
+    "loadError": "Yüklənmə xətası",
+    "retry": "Yenidən"
+  },
+  "auth": {
+    "title": "Taxi",
+    "subtitle": "Telefon nömrəsi ilə daxil ol (demo)",
+    "continue": "Davam et"
+  },
+  "tabs": { "order": "Sifariş", "history": "Tarix", "profile": "Profil" },
+  "order": { "title": "Sifariş", "perKm": "/km" },
+  "history": { "title": "Tarix", "empty": "Sifariş yoxdur" },
+  "profile": {
+    "title": "Profil",
+    "balance": "Balans",
+    "payments": "Ödəniş üsulları",
+    "promo": "Promokod",
+    "news": "Xəbərlər",
+    "logout": "Çıxış",
+    "language": "Dil"
+  },
+  "balance": {
+    "title": "Balans",
+    "current": "Cari balans",
+    "transactions": "Əməliyyatlar",
+    "topUp": "Balansı artır",
+    "empty": "Əməliyyat yoxdur"
+  },
+  "payments": {
+    "title": "Ödəniş üsulları",
+    "addCard": "Kart əlavə et",
+    "default": "Əsas",
+    "empty": "Əlavə edilmiş kart yoxdur"
+  },
+  "addCard": {
+    "title": "Kart əlavə et",
+    "number": "Kart nömrəsi",
+    "expiry": "Bitmə tarixi",
+    "holder": "Kart sahibinin adı"
+  },
+  "promo": {
+    "title": "Promo kod",
+    "placeholder": "Promo kod",
+    "hint": "Promo kod növbəti sifariş zamanı aktiv olacaq",
+    "discount": "Endirim"
+  },
+  "ratings": {
+    "title": "Qiymətləndirmə",
+    "rateDriver": "Sürücünü qiymətləndirin",
+    "comment": "Şərh",
+    "send": "Göndər"
+  },
+  "driverOrder": {
+    "title": "Sifariş",
+    "route": "Marşrut",
+    "price": "Qiymət",
+    "cancel": "Ləğv et",
+    "rate": "Qiymətləndir",
+    "driver": "Sürücü",
+    "driverSearching": "Sürücü axtarılır...",
+    "status": "Status",
+    "notFound": "Sifariş tapılmadı",
+    "statusLabels": {
+      "searching": "Axtarılır",
+      "accepted": "Qəbul edildi",
+      "inProgress": "Yoldadır",
+      "completed": "Tamamlandı",
+      "cancelled": "Ləğv edildi"
+    }
+  },
+  "news": { "title": "Xəbərlər", "empty": "Xəbər yoxdur" },
+  "country": { "title": "Ölkə kodu" },
+  "language": { "az": "Azərbaycan", "ru": "Rus", "en": "İngilis" }
+}

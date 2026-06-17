@@ -1,0 +1,79 @@
+{
+  "common": {
+    "cancel": "Отмена",
+    "save": "Сохранить",
+    "apply": "Применить",
+    "delete": "Удалить",
+    "loadError": "Ошибка загрузки",
+    "retry": "Повторить"
+  },
+  "auth": {
+    "title": "Taxi",
+    "subtitle": "Вход по номеру телефона (демо)",
+    "continue": "Продолжить"
+  },
+  "tabs": { "order": "Заказ", "history": "История", "profile": "Профиль" },
+  "order": { "title": "Заказ", "perKm": "/км" },
+  "history": { "title": "История", "empty": "Заказов нет" },
+  "profile": {
+    "title": "Профиль",
+    "balance": "Баланс",
+    "payments": "Способы оплаты",
+    "promo": "Промокод",
+    "news": "Новости",
+    "logout": "Выход",
+    "language": "Язык"
+  },
+  "balance": {
+    "title": "Баланс",
+    "current": "Текущий баланс",
+    "transactions": "Операции",
+    "topUp": "Пополнить баланс",
+    "empty": "Операций нет"
+  },
+  "payments": {
+    "title": "Способы оплаты",
+    "addCard": "Добавить карту",
+    "default": "Основная",
+    "empty": "Нет добавленных карт"
+  },
+  "addCard": {
+    "title": "Добавить карту",
+    "number": "Номер карты",
+    "expiry": "Срок действия",
+    "holder": "Имя держателя"
+  },
+  "promo": {
+    "title": "Промокод",
+    "placeholder": "Промокод",
+    "hint": "Промокод активируется при следующем заказе",
+    "discount": "Скидка"
+  },
+  "ratings": {
+    "title": "Оценка",
+    "rateDriver": "Оцените водителя",
+    "comment": "Комментарий",
+    "send": "Отправить"
+  },
+  "driverOrder": {
+    "title": "Заказ",
+    "route": "Маршрут",
+    "price": "Цена",
+    "cancel": "Отменить",
+    "rate": "Оценить",
+    "driver": "Водитель",
+    "driverSearching": "Поиск водителя...",
+    "status": "Статус",
+    "notFound": "Заказ не найден",
+    "statusLabels": {
+      "searching": "Поиск",
+      "accepted": "Принят",
+      "inProgress": "В пути",
+      "completed": "Завершён",
+      "cancelled": "Отменён"
+    }
+  },
+  "news": { "title": "Новости", "empty": "Новостей нет" },
+  "country": { "title": "Код страны" },
+  "language": { "az": "Азербайджанский", "ru": "Русский", "en": "Английский" }
+}
