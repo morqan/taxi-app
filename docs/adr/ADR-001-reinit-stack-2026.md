@@ -46,10 +46,10 @@
 
 1. [x] Scaffold bare RN 0.86 + TS, gate сборки (tsc/lint/build чисты)
 2. [x] Базовый tooling: ESLint 9 flat + Prettier + tsconfig strict + husky + CI
-3. [ ] API-слой: RTK Query + типы DTO + MSW mock-бэкенд (auth/profile/orders/payments)
-4. [ ] Перенос экранов Flow→TS + React Navigation v7 поверх нового UI-kit
-5. [ ] i18n-миграция словарей
-6. [ ] Карта/гео адаптер (MapLibre + Nominatim + OSRM)
-7. [ ] decision.md (baseline→final Score) + PR на review
+3. [x] API-слой: RTK Query + типы DTO + MSW mock-бэкенд (auth/profile/orders/payments)
+4. [x] Перенос экранов Flow→TS + React Navigation v7 поверх нового UI-kit
+5. [x] i18n-миграция словарей (свежие az/ru/en)
+6. [x] Карта/гео адаптер (Leaflet-webview + Nominatim + OSRM — beam: не MapLibre)
+7. [x] decision.md (baseline 3 → final 83) + PR на review
 
 > Примечание (2026-06-17): автотесты исключены из объёма по решению владельца. CI-gate = typecheck + lint + format + build.
