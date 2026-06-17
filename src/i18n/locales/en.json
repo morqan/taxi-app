@@ -1,0 +1,69 @@
+{
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "apply": "Apply",
+    "delete": "Delete",
+    "loadError": "Failed to load",
+    "retry": "Retry"
+  },
+  "auth": {
+    "title": "Taxi",
+    "subtitle": "Sign in with phone number (demo)",
+    "continue": "Continue"
+  },
+  "tabs": { "order": "Order", "history": "History", "profile": "Profile" },
+  "order": { "title": "Order", "perKm": "/km" },
+  "history": { "title": "History", "empty": "No orders" },
+  "profile": {
+    "title": "Profile",
+    "balance": "Balance",
+    "payments": "Payment methods",
+    "promo": "Promo code",
+    "news": "News",
+    "logout": "Log out",
+    "language": "Language"
+  },
+  "balance": {
+    "title": "Balance",
+    "current": "Current balance",
+    "transactions": "Transactions",
+    "topUp": "Top up balance",
+    "empty": "No transactions"
+  },
+  "payments": {
+    "title": "Payment methods",
+    "addCard": "Add card",
+    "default": "Default",
+    "empty": "No cards added"
+  },
+  "addCard": {
+    "title": "Add card",
+    "number": "Card number",
+    "expiry": "Expiry date",
+    "holder": "Cardholder name"
+  },
+  "promo": {
+    "title": "Promo code",
+    "placeholder": "Promo code",
+    "hint": "Promo code activates on your next order",
+    "discount": "Discount"
+  },
+  "ratings": {
+    "title": "Rating",
+    "rateDriver": "Rate the driver",
+    "comment": "Comment",
+    "send": "Send"
+  },
+  "driverOrder": {
+    "title": "Order",
+    "cancel": "Cancel",
+    "rate": "Rate",
+    "driver": "Driver",
+    "status": "Status",
+    "notFound": "Order not found"
+  },
+  "news": { "title": "News" },
+  "country": { "title": "Country code" },
+  "language": { "az": "Azerbaijani", "ru": "Russian", "en": "English" }
+}

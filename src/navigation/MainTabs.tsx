@@ -1,4 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useTranslation } from 'react-i18next';
 
 import { OrderScreen } from '@/features/orders/OrderScreen';
 import { OrdersScreen } from '@/features/orders/OrdersScreen';
@@ -10,6 +11,8 @@ import type { MainTabParamList } from './types';
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
 export function MainTabs() {
+  const { t } = useTranslation();
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -20,9 +23,17 @@ export function MainTabs() {
         tabBarInactiveTintColor: colors.muted,
       }}
     >
-      <Tab.Screen name="OrderTab" component={OrderScreen} options={{ title: 'Sifariş' }} />
-      <Tab.Screen name="OrdersTab" component={OrdersScreen} options={{ title: 'Tarix' }} />
-      <Tab.Screen name="ProfileTab" component={ProfileScreen} options={{ title: 'Profil' }} />
+      <Tab.Screen name="OrderTab" component={OrderScreen} options={{ title: t('tabs.order') }} />
+      <Tab.Screen
+        name="OrdersTab"
+        component={OrdersScreen}
+        options={{ title: t('tabs.history') }}
+      />
+      <Tab.Screen
+        name="ProfileTab"
+        component={ProfileScreen}
+        options={{ title: t('tabs.profile') }}
+      />
     </Tab.Navigator>
   );
 }
