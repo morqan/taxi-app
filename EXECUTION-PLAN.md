@@ -9,7 +9,7 @@
 - [x] **Ф0. ADR + worktree** — `docs/adr/ADR-001`, ветка создана. ✅ чекпойнт 1
 - [x] **Ф1. Scaffold** — bare React Native 0.86 + React 19 + TS 5.8 (CLI `@react-native-community/cli`) в worktree; src-структура, нативные ios/android; gate: tsc чист. ✅ (пересобрано на bare по решению владельца)
 - [x] **Ф2. Tooling/DX** — ESLint 9 flat (typescript-eslint + react + hooks + simple-import-sort) + Prettier + tsconfig strict + husky pre-commit + GitHub Actions (Node 22; install→typecheck→lint→format→build RN bundle). gate: всё зелёное. ✅ чекпойнт
-- [ ] **Ф3. API-слой + mock** — RTK store, RTK Query baseApi, DTO-типы, MSW-хендлеры для auth(OTP)/profile/balance/orders(CRUD+rate)/payments. `.env` через `react-native-config`. gate: типизированные хуки + мок отвечает.
+- [x] **Ф3. API-слой + mock** — RTK store + typed hooks, RTK Query baseApi (fetchBaseQuery + Bearer из Keychain), DTO-типы, 6 доменных слайсов (auth/profile/orders/payments/promo/news), MSW mock-бэкенд (db + handlers на все эндпоинты, сид из старых Fixtures), `.env` через react-native-config, токены в Keychain (не AsyncStorage). gate: typecheck/lint/format/build зелёные. ✅ чекпойнт
 - [ ] **Ф4. Перенос экранов** — Flow→TS, **React Navigation v7** (native-stack) + перенос ~18 экранов на NativeWind + gluestack-ui, привязка к RTK Query вместо хардкода. **Fan-out кейс** (Workflow: 1 агент на экран). gate: навигация ходит по всем экранам на mock-данных.
 - [ ] **Ф5. i18n** — i18next + react-i18next + react-native-localize, словари из старого `App/I18n/languages` (az/ru/en). gate: переключение языка работает.
 - [ ] **Ф6. Карта/гео** — адаптер геопровайдера: MapLibre + Nominatim + OSRM (free), интерфейс для подмены prod. gate: карта рендерится, геокодинг отвечает.
@@ -26,8 +26,8 @@
 
 ## Beam-точки (top-3, не жадно)
 
-- Ф3: baseQuery RTK Query — `fetchBaseQuery` vs кастомный axios-base vs graphql. → измерить, winner + 2 rejected в decision.
-- Ф6: провайдер карт — MapLibre vs react-native-maps(OSM tiles) vs Leaflet-webview.
+- Ф3: baseQuery RTK Query — **РЕШЕНО: `fetchBaseQuery` (winner)**. Rejected: (a) кастомный axios-baseQuery — лишняя зависимость, fetch покрывает REST+Bearer+timeout; (b) graphql baseQuery — бэкенд REST, GraphQL избыточен. Реальной развилки нет → greedy оправдан (beam-3 был бы cargo-cult).
+- Ф6: провайдер карт — MapLibre vs react-native-maps(OSM tiles) vs Leaflet-webview. (открыто)
 
 ## Порт-карта (что переносим / что выкидываем)
 
@@ -40,4 +40,6 @@
 - 2026-06-17 — Ф1 done: scaffold Expo SDK 56 / RN 0.85 / React 19 / TS 6 / Expo Router влит в worktree, старый RN 0.59 заменён (оригинал цел в master-checkout для портирования), tsc зелёный (добавлен `src/types/css.d.ts`). NativeWind/RTK/expo-location ставятся на Ф2-Ф4.
 - 2026-06-17 — Ф2 done (первая версия, на Expo): ESLint flat + Prettier + tsconfig strict + husky + CI. npm audit 225→11 moderate.
 - 2026-06-17 — **РАЗВОРОТ Expo→bare RN** по решению владельца (привык к bare CLI во всех проектах, хочет полный контроль над нативкой). Ф1+Ф2 пересобраны на **bare React Native 0.86 + React 19 + TS 5.8**: новый scaffold через `@react-native-community/cli`, нативные ios/android, ESLint 9 flat переписан на typescript-eslint (без eslint-config-expo), babel module-resolver (@→src), src-структура, App.tsx минимальный, build-gate = `react-native bundle` (876K). npm audit: 7 moderate / 0 crit/high. ADR-001 обновлён (решение + trade-off bare↔Expo). Навигация в плане: Expo Router → React Navigation v7. Gate зелёный: typecheck/lint/format/build на Node 20 (CI на Node 22, как требует RN 0.86).
-- **Точка возобновления:** следующая — Ф3 (API-слой: RTK store + RTK Query baseApi + DTO-типы + MSW mock-бэкенд).
+- 2026-06-17 — Ф3 done: API-слой на bare RN. RTK store + typed hooks; baseApi (fetchBaseQuery, Bearer-токен из Keychain через prepareHeaders); DTO в `src/api/types.ts`; 6 слайсов через injectEndpoints (auth OTP / profile+balance / orders CRUD+tariffs+rate+cancel / payments cards / promo / news); MSW mock (`src/mocks`: db с сидом из старых Fixtures — адреса Баку/AZN, handlers на все эндпоинты, server `msw/native`, enableMocking с динамическим импортом). Токены в react-native-keychain (НЕ AsyncStorage — закрыта находка аудита). `.env`/`.env.example` через react-native-config. baseQuery beam решён в пользу fetchBaseQuery. Фикс: добавлен `@babel/plugin-transform-class-static-block` (msw/@mswjs/interceptors используют static class blocks). Gate зелёный: typecheck/lint/format/build (2.5M).
+- **REMAINING / оптимизация:** msw попадает в production-бандл (876K→2.5M) — динамический import не исключает его из графа metro. Позже: исключить msw из prod (metro resolver / dev-only entry). Нативная линковка react-native-config + react-native-keychain (pod install) нужна для рантайма на устройстве — для gate не требуется. Рантайм-проверка «мок реально отвечает» — на устройстве/симуляторе в Ф4.
+- **Точка возобновления:** следующая — Ф4 (React Navigation v7 + перенос ~18 экранов на NativeWind+gluestack, привязка к RTK Query; fan-out через Workflow).
