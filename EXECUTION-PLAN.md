@@ -7,11 +7,11 @@
 ## Статус фаз
 
 - [x] **Ф0. ADR + worktree** — `docs/adr/ADR-001`, ветка создана. ✅ чекпойнт 1
-- [x] **Ф1. Scaffold** — Expo SDK 56 + RN 0.85 + React 19 + TS 6 + Expo Router в worktree; gate: tsc чист. ✅ чекпойнт 2
-- [x] **Ф2. Tooling/DX** — ESLint 9 flat + Prettier + tsconfig strict + husky pre-commit + GitHub Actions (install→typecheck→lint→format→build). gate: typecheck/lint/format/build зелёные. ✅ чекпойнт 4
-- [ ] **Ф3. API-слой + mock** — RTK store, RTK Query baseApi, DTO-типы, MSW-хендлеры для auth(OTP)/profile/balance/orders(CRUD+rate)/payments. `.env` через `expo-constants`/`react-native-config`. gate: типизированные хуки + мок отвечает.
-- [ ] **Ф4. Перенос экранов** — Flow→TS, перенос ~18 экранов на NativeWind + gluestack-ui, привязка к RTK Query вместо хардкода. **Fan-out кейс** (Workflow: 1 агент на экран). gate: навигация ходит по всем экранам на mock-данных.
-- [ ] **Ф5. i18n** — i18next + словари из старого `App/I18n/languages` (az/ru/en), expo-localization. gate: переключение языка работает.
+- [x] **Ф1. Scaffold** — bare React Native 0.86 + React 19 + TS 5.8 (CLI `@react-native-community/cli`) в worktree; src-структура, нативные ios/android; gate: tsc чист. ✅ (пересобрано на bare по решению владельца)
+- [x] **Ф2. Tooling/DX** — ESLint 9 flat (typescript-eslint + react + hooks + simple-import-sort) + Prettier + tsconfig strict + husky pre-commit + GitHub Actions (Node 22; install→typecheck→lint→format→build RN bundle). gate: всё зелёное. ✅ чекпойнт
+- [ ] **Ф3. API-слой + mock** — RTK store, RTK Query baseApi, DTO-типы, MSW-хендлеры для auth(OTP)/profile/balance/orders(CRUD+rate)/payments. `.env` через `react-native-config`. gate: типизированные хуки + мок отвечает.
+- [ ] **Ф4. Перенос экранов** — Flow→TS, **React Navigation v7** (native-stack) + перенос ~18 экранов на NativeWind + gluestack-ui, привязка к RTK Query вместо хардкода. **Fan-out кейс** (Workflow: 1 агент на экран). gate: навигация ходит по всем экранам на mock-данных.
+- [ ] **Ф5. i18n** — i18next + react-i18next + react-native-localize, словари из старого `App/I18n/languages` (az/ru/en). gate: переключение языка работает.
 - [ ] **Ф6. Карта/гео** — адаптер геопровайдера: MapLibre + Nominatim + OSRM (free), интерфейс для подмены prod. gate: карта рендерится, геокодинг отвечает.
 - [ ] **Ф7. Decision + PR** — `decision.md` (baseline→final Score, beam-решения, anti-Goodhart), открыть PR. НЕ мержить.
 
@@ -38,5 +38,6 @@
 
 - 2026-06-17 — Ф0 done: ADR-001 + worktree + план.
 - 2026-06-17 — Ф1 done: scaffold Expo SDK 56 / RN 0.85 / React 19 / TS 6 / Expo Router влит в worktree, старый RN 0.59 заменён (оригинал цел в master-checkout для портирования), tsc зелёный (добавлен `src/types/css.d.ts`). NativeWind/RTK/expo-location ставятся на Ф2-Ф4.
-- 2026-06-17 — Ф2 done: ESLint 9 flat (eslint-config-expo + simple-import-sort + eqeqeq + no-console) + Prettier + tsconfig strict (noUncheckedIndexedAccess, noFallthroughCasesInSwitch) + husky pre-commit (lint-staged + typecheck) + GitHub Actions CI + .nvmrc/.editorconfig/engines. Проект переименован taxi-scaffold-tmp→taxi-app. use-color-scheme.web.ts переписан на useSyncExternalStore (убран set-state-in-effect). npm audit: 225(60crit/80high) → 11 moderate (транзитивный uuid в Expo SDK, не фиксится без отката). Gate зелёный: typecheck/lint/format/build(3.5M dist).
+- 2026-06-17 — Ф2 done (первая версия, на Expo): ESLint flat + Prettier + tsconfig strict + husky + CI. npm audit 225→11 moderate.
+- 2026-06-17 — **РАЗВОРОТ Expo→bare RN** по решению владельца (привык к bare CLI во всех проектах, хочет полный контроль над нативкой). Ф1+Ф2 пересобраны на **bare React Native 0.86 + React 19 + TS 5.8**: новый scaffold через `@react-native-community/cli`, нативные ios/android, ESLint 9 flat переписан на typescript-eslint (без eslint-config-expo), babel module-resolver (@→src), src-структура, App.tsx минимальный, build-gate = `react-native bundle` (876K). npm audit: 7 moderate / 0 crit/high. ADR-001 обновлён (решение + trade-off bare↔Expo). Навигация в плане: Expo Router → React Navigation v7. Gate зелёный: typecheck/lint/format/build на Node 20 (CI на Node 22, как требует RN 0.86).
 - **Точка возобновления:** следующая — Ф3 (API-слой: RTK store + RTK Query baseApi + DTO-типы + MSW mock-бэкенд).
