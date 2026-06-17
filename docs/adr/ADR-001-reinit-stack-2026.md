@@ -17,16 +17,16 @@
 
 ## Зафиксированный стек (рекомендации по 8 развилкам)
 
-| # | Развилка | Решение | Почему |
-|---|----------|---------|--------|
-| 1 | re-init vs in-place | **re-init** | ценного JS мало; in-place упирается в потолок RN-апгрейда iOS |
-| 2 | Expo vs bare RN | **Expo (dev-client + config plugins)** | именно нативный maintenance убил проект; Expo снимает его с solo-разработчика, при этом карты/гео/Stripe доступны через config plugins |
-| 3 | Состояние/данные | **Redux Toolkit + RTK Query** | проект уже Redux-формы (низкое трение переноса); RTK Query заменяет saga+apisauce целиком (кэш, retry, инвалидация) |
-| 4 | Навигация | **Expo Router (typed routes)** | файловая навигация, deep linking из коробки, поверх React Navigation v7 |
-| 5 | UI-kit | **NativeWind v4 + gluestack-ui v2** | заменяет native-base v2; Tailwind-стиль + готовые компоненты; легче Tamagui для solo |
-| 6 | i18n | **i18next + react-i18next + expo-localization** | мигрирует существующий формат `App/I18n/languages`; зрелый, заменяет deprecated react-native-i18n |
-| 7 | Карты/гео | **MapLibre + Nominatim (геокодинг) + OSRM (маршруты)** | бесплатный OSM-стек для dev/MVP; за адаптером, чтобы платный провайдер подменялся в prod |
-| 8 | Mock-бэкенд | **MSW (основной) + json-server (ручное)** | network-level мок для разработки приложения; json-server опционально для Postman |
+| #   | Развилка            | Решение                                                | Почему                                                                                                                                 |
+| --- | ------------------- | ------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | re-init vs in-place | **re-init**                                            | ценного JS мало; in-place упирается в потолок RN-апгрейда iOS                                                                          |
+| 2   | Expo vs bare RN     | **Expo (dev-client + config plugins)**                 | именно нативный maintenance убил проект; Expo снимает его с solo-разработчика, при этом карты/гео/Stripe доступны через config plugins |
+| 3   | Состояние/данные    | **Redux Toolkit + RTK Query**                          | проект уже Redux-формы (низкое трение переноса); RTK Query заменяет saga+apisauce целиком (кэш, retry, инвалидация)                    |
+| 4   | Навигация           | **Expo Router (typed routes)**                         | файловая навигация, deep linking из коробки, поверх React Navigation v7                                                                |
+| 5   | UI-kit              | **NativeWind v4 + gluestack-ui v2**                    | заменяет native-base v2; Tailwind-стиль + готовые компоненты; легче Tamagui для solo                                                   |
+| 6   | i18n                | **i18next + react-i18next + expo-localization**        | мигрирует существующий формат `App/I18n/languages`; зрелый, заменяет deprecated react-native-i18n                                      |
+| 7   | Карты/гео           | **MapLibre + Nominatim (геокодинг) + OSRM (маршруты)** | бесплатный OSM-стек для dev/MVP; за адаптером, чтобы платный провайдер подменялся в prod                                               |
+| 8   | Mock-бэкенд         | **MSW (основной) + json-server (ручное)**              | network-level мок для разработки приложения; json-server опционально для Postman                                                       |
 
 ## Trade-off (ключевое)
 
