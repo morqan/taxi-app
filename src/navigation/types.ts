@@ -8,4 +8,12 @@ export type MainTabParamList = {
 
 export type RootStackParamList = {
   Main: NavigatorScreenParams<MainTabParamList>;
+  Balance: undefined;
+  PaymentMethod: undefined;
+  AddCard: undefined;
+  Promo: undefined;
+  News: undefined;
+  CountryPicker: undefined;
+  DriverOrder: { orderId: string };
+  Ratings: { orderId: string };
 };
