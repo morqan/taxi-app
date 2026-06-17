@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, Text, View } from 'react-native';
 
 import { Button } from '@/components/ui/Button';
@@ -11,7 +12,9 @@ import { colors } from '@/theme/colors';
 
 export function PaymentMethodScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const { t } = useTranslation();
   const { data: cards = [], isLoading, isError } = useGetCardsQuery();
+  // Мутация удаления карты по id; isDeleting блокирует кнопки на время запроса
   const [deleteCard, { isLoading: isDeleting }] = useDeleteCardMutation();
 
   if (isLoading) {
@@ -26,25 +29,29 @@ export function PaymentMethodScreen() {
 
   return (
     <Screen>
-      <Text className="py-4 text-2xl font-medium text-text">Ödəniş üsulları</Text>
+      <Text className="py-4 text-2xl font-medium text-text">{t('payments.title')}</Text>
 
       {isError ? (
-        <Text className="text-base text-danger">Kartları yükləmək mümkün olmadı</Text>
+        // Ошибка приходит от RTK Query (сеть/сервер) — показываем общий текст загрузки
+        <Text className="text-base text-danger">{t('common.loadError')}</Text>
       ) : cards.length === 0 ? (
-        <Text className="text-base text-muted">Əlavə edilmiş kart yoxdur</Text>
+        <Text className="text-base text-muted">{t('payments.empty')}</Text>
       ) : (
         <View className="gap-3">
           {cards.map((card) => (
             <Card key={card.id} className="flex-row items-center justify-between">
               <View className="flex-1">
+                {/* last4 и brand — данные карты, не переводим */}
                 <Text className="text-base font-medium text-text">•••• {card.last4}</Text>
                 <Text className="text-sm text-muted">{card.brand}</Text>
                 {card.isDefault ? (
-                  <Text className="mt-1 text-xs font-medium text-primary">Əsas</Text>
+                  <Text className="mt-1 text-xs font-medium text-primary">
+                    {t('payments.default')}
+                  </Text>
                 ) : null}
               </View>
               <Button
-                title="Sil"
+                title={t('common.delete')}
                 variant="danger"
                 disabled={isDeleting}
                 onPress={() => {
@@ -57,7 +64,7 @@ export function PaymentMethodScreen() {
       )}
 
       <View className="mt-6">
-        <Button title="Kart əlavə et" onPress={() => navigation.navigate('AddCard')} />
+        <Button title={t('payments.addCard')} onPress={() => navigation.navigate('AddCard')} />
       </View>
     </Screen>
   );

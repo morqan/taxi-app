@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, Text, View } from 'react-native';
 
 import { Button } from '@/components/ui/Button';
@@ -10,7 +11,9 @@ import { useAddCardMutation } from '@/features/payments/paymentsApi';
 import type { RootStackParamList } from '@/navigation/types';
 
 export function AddCardScreen() {
+  const { t } = useTranslation();
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  // Мутация добавления карты: на бэкенд уходит только безопасный токен, не данные карты.
   const [addCard, { isLoading, isError }] = useAddCardMutation();
 
   const [number, setNumber] = useState('');
@@ -41,11 +44,11 @@ export function AddCardScreen() {
 
   return (
     <Screen>
-      <Text className="py-4 text-2xl font-medium text-text">Kart əlavə et</Text>
+      <Text className="py-4 text-2xl font-medium text-text">{t('addCard.title')}</Text>
 
       <View className="gap-3">
         <View className="gap-1">
-          <Text className="text-sm text-muted">Kart nömrəsi</Text>
+          <Text className="text-sm text-muted">{t('addCard.number')}</Text>
           <Input
             value={number}
             onChangeText={setNumber}
@@ -57,7 +60,7 @@ export function AddCardScreen() {
         </View>
 
         <View className="gap-1">
-          <Text className="text-sm text-muted">Bitmə tarixi</Text>
+          <Text className="text-sm text-muted">{t('addCard.expiry')}</Text>
           <Input
             value={expiry}
             onChangeText={setExpiry}
@@ -69,7 +72,7 @@ export function AddCardScreen() {
         </View>
 
         <View className="gap-1">
-          <Text className="text-sm text-muted">Kart sahibinin adı</Text>
+          <Text className="text-sm text-muted">{t('addCard.holder')}</Text>
           <Input
             value={holder}
             onChangeText={setHolder}
@@ -79,16 +82,12 @@ export function AddCardScreen() {
           />
         </View>
 
-        {isError ? (
-          <Text className="text-sm text-danger">
-            Kartı əlavə etmək alınmadı. Yenidən cəhd edin.
-          </Text>
-        ) : null}
+        {isError ? <Text className="text-sm text-danger">{t('common.loadError')}</Text> : null}
 
         {isLoading ? (
           <ActivityIndicator />
         ) : (
-          <Button title="Yadda saxla" onPress={handleSubmit} disabled={!canSubmit} />
+          <Button title={t('common.save')} onPress={handleSubmit} disabled={!canSubmit} />
         )}
       </View>
     </Screen>
