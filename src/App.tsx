@@ -1,10 +1,33 @@
+import '../global.css';
+
+import { NavigationContainer } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 
 import { enableMocking } from '@/mocks';
+import { RootNavigator } from '@/navigation/RootNavigator';
 import { store } from '@/store';
+import { colors } from '@/theme/colors';
+
+const navTheme = {
+  dark: true,
+  colors: {
+    primary: colors.primary,
+    background: colors.background,
+    card: colors.line,
+    text: colors.text,
+    border: colors.border,
+    notification: colors.danger,
+  },
+  fonts: {
+    regular: { fontFamily: 'System', fontWeight: '400' as const },
+    medium: { fontFamily: 'System', fontWeight: '500' as const },
+    bold: { fontFamily: 'System', fontWeight: '700' as const },
+    heavy: { fontFamily: 'System', fontWeight: '900' as const },
+  },
+};
 
 function App() {
   const [ready, setReady] = useState(!__DEV__);
@@ -24,14 +47,9 @@ function App() {
   return (
     <Provider store={store}>
       <SafeAreaProvider>
-        <SafeAreaView style={styles.container}>
-          <View style={styles.content}>
-            <Text style={styles.title}>Taxi</Text>
-            <Text style={styles.subtitle}>
-              Bare React Native 0.86 · RTK Query + MSW mock-бэкенд готовы
-            </Text>
-          </View>
-        </SafeAreaView>
+        <NavigationContainer theme={navTheme}>
+          <RootNavigator />
+        </NavigationContainer>
       </SafeAreaProvider>
     </Provider>
   );
@@ -42,25 +60,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  container: {
-    flex: 1,
-  },
-  content: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
-    paddingHorizontal: 24,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: '600',
-  },
-  subtitle: {
-    fontSize: 14,
-    opacity: 0.6,
-    textAlign: 'center',
+    backgroundColor: colors.background,
   },
 });
 
