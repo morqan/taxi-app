@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useTranslation } from 'react-i18next';
 
 import { CountryPickerScreen } from '@/features/auth/CountryPickerScreen';
 import { NewsScreen } from '@/features/news/NewsScreen';
@@ -16,6 +17,8 @@ import type { RootStackParamList } from './types';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export function MainNavigator() {
+  const { t } = useTranslation();
+
   return (
     <Stack.Navigator
       screenOptions={{
@@ -25,26 +28,38 @@ export function MainNavigator() {
       }}
     >
       <Stack.Screen name="Main" component={MainTabs} options={{ headerShown: false }} />
-      <Stack.Screen name="Balance" component={BalanceScreen} options={{ title: 'Balans' }} />
+      <Stack.Screen
+        name="Balance"
+        component={BalanceScreen}
+        options={{ title: t('balance.title') }}
+      />
       <Stack.Screen
         name="PaymentMethod"
         component={PaymentMethodScreen}
-        options={{ title: 'Ödəniş üsulları' }}
+        options={{ title: t('payments.title') }}
       />
-      <Stack.Screen name="AddCard" component={AddCardScreen} options={{ title: 'Kart əlavə et' }} />
-      <Stack.Screen name="Promo" component={PromoScreen} options={{ title: 'Promokod' }} />
-      <Stack.Screen name="News" component={NewsScreen} options={{ title: 'Xəbərlər' }} />
+      <Stack.Screen
+        name="AddCard"
+        component={AddCardScreen}
+        options={{ title: t('addCard.title') }}
+      />
+      <Stack.Screen name="Promo" component={PromoScreen} options={{ title: t('promo.title') }} />
+      <Stack.Screen name="News" component={NewsScreen} options={{ title: t('news.title') }} />
       <Stack.Screen
         name="CountryPicker"
         component={CountryPickerScreen}
-        options={{ title: 'Ölkə kodu' }}
+        options={{ title: t('country.title') }}
       />
       <Stack.Screen
         name="DriverOrder"
         component={DriverOrderScreen}
-        options={{ title: 'Sifariş' }}
+        options={{ title: t('driverOrder.title') }}
       />
-      <Stack.Screen name="Ratings" component={RatingsScreen} options={{ title: 'Qiymətləndir' }} />
+      <Stack.Screen
+        name="Ratings"
+        component={RatingsScreen}
+        options={{ title: t('ratings.title') }}
+      />
     </Stack.Navigator>
   );
 }

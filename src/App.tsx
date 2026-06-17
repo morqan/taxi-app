@@ -1,4 +1,5 @@
 import '../global.css';
+import '@/i18n';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
