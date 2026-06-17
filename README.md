@@ -1,67 +1,69 @@
-#  taxyApp
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
+# taxi-app
 
-* Standard compliant React Native App Utilizing [Ignite](https://github.com/infinitered/ignite)
+Мобильное приложение такси (rider) на React Native. Пересоздано в 2026 на современный стек
+с легаси-версии (RN 0.59.9, Ignite, 2019). История модернизации — `decision.md` и
+`EXECUTION-PLAN.md`, архитектурные решения — `docs/adr/ADR-001`.
 
-## :arrow_up: How to Setup
+## Стек
 
-**Step 1:** git clone this repo:
+- **React Native 0.86** (bare CLI) + **React 19** + **TypeScript 5.8** (strict)
+- **Redux Toolkit + RTK Query** — состояние и data-fetching
+- **React Navigation v7** (native-stack + bottom-tabs)
+- **NativeWind v4** (Tailwind) — стилизация
+- **i18next** — локализация (az / ru / en, авто-определение языка)
+- **MSW** — mock-бэкенд для разработки
+- **react-native-keychain** — токены сессии (не AsyncStorage)
+- **react-native-config** — переменные окружения
+- Карта: **Leaflet** через WebView + бесплатный OSM-стек (**Nominatim** геокодинг, **OSRM** маршруты)
 
-**Step 2:** cd to the cloned repo:
+## Запуск
 
-**Step 3:** Install the Application with `yarn` or `npm i`
+```sh
+nvm use                 # Node 22 (требует RN 0.86)
+npm install
+cp .env.example .env     # API_URL, USE_MOCK=true, GOOGLE_MAPS_API_KEY
 
+# iOS (нужен Mac + CocoaPods)
+cd ios && pod install && cd ..
+npm run ios
 
-## :arrow_forward: How to Run App
+# Android
+npm run android
 
-1. cd to the repo
-2. Run Build for either OS
-  * for iOS
-    * run `react-native run-ios`
-  * for Android
-    * Run Genymotion
-    * run `react-native run-android`
-
-## :no_entry_sign: Standard Compliant
-
-[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
-This project adheres to Standard.  Our CI enforces this, so we suggest you enable linting to keep your project compliant during development.
-
-**To Lint on Commit**
-
-This is implemented using [husky](https://github.com/typicode/husky). There is no additional setup needed.
-
-**Bypass Lint**
-
-If you have to bypass lint for a special commit that you will come back and clean (pushing something to a branch etc.) then you can bypass git hooks with adding `--no-verify` to your commit command.
-
-**Understanding Linting Errors**
-
-The linting rules are from JS Standard and React-Standard.  [Regular JS errors can be found with descriptions here](http://eslint.org/docs/rules/), while [React errors and descriptions can be found here](https://github.com/yannickcr/eslint-plugin-react).
-
-## :closed_lock_with_key: Secrets
-
-This project uses [react-native-config](https://github.com/luggit/react-native-config) to expose config variables to your javascript code in React Native. You can store API keys
-and other sensitive information in a `.env` file:
-
-```
-API_URL=https://myapi.com
-GOOGLE_MAPS_API_KEY=abcdefgh
+# Metro
+npm start
 ```
 
-and access them from React Native like so:
+С `USE_MOCK=true` приложение работает на MSW-моке без реального бэкенда.
+
+## Скрипты
+
+| Скрипт                            | Что делает                               |
+| --------------------------------- | ---------------------------------------- |
+| `npm run typecheck`               | `tsc --noEmit`                           |
+| `npm run lint` / `lint:fix`       | ESLint 9 (flat config)                   |
+| `npm run format` / `format:check` | Prettier                                 |
+| `npm run build`                   | сборка JS-бандла (`react-native bundle`) |
+
+Pre-commit (husky + lint-staged) прогоняет lint + typecheck. CI (GitHub Actions):
+`install → typecheck → lint → format → build`.
+
+## Статус
+
+Готов современный **каркас** (навигация, экраны, API-слой на моке, i18n, карта-превью).
+**Автотесты не входят в объём** (решение владельца). Для боевого MVP нужны: реальный backend,
+платёжный провайдер, real-time трекинг, водительская часть — см. раздел Remaining в `decision.md`.
+
+## Структура
 
 ```
-import Secrets from 'react-native-config'
-
-Secrets.API_URL  // 'https://myapi.com'
-Secrets.GOOGLE_MAPS_API_KEY  // 'abcdefgh'
+src/
+  api/          # baseApi (RTK Query) + DTO-типы
+  features/     # auth, orders, payments, profile, promo, news, geo — по фиче
+  components/ui # примитивы (Button, Input, Card, Screen)
+  navigation/   # Root / Auth / Main (tabs + detail stack)
+  i18n/         # i18next + словари az/ru/en
+  mocks/        # MSW (db + handlers)
+  store/        # Redux store + typed hooks
+  theme/        # цвета
 ```
-
-The `.env` file is ignored by git keeping those secrets out of your repo.
-
-### Get started:
-1. Copy .env.example to .env
-2. Add your config variables
-3. Follow instructions at [https://github.com/luggit/react-native-config#setup](https://github.com/luggit/react-native-config#setup)
-4. Done!
