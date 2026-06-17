@@ -57,13 +57,23 @@
   },
   "driverOrder": {
     "title": "Order",
+    "route": "Route",
+    "price": "Price",
     "cancel": "Cancel",
     "rate": "Rate",
     "driver": "Driver",
+    "driverSearching": "Searching for driver...",
     "status": "Status",
-    "notFound": "Order not found"
+    "notFound": "Order not found",
+    "statusLabels": {
+      "searching": "Searching",
+      "accepted": "Accepted",
+      "inProgress": "In progress",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    }
   },
-  "news": { "title": "News" },
+  "news": { "title": "News", "empty": "No news" },
   "country": { "title": "Country code" },
   "language": { "az": "Azerbaijani", "ru": "Russian", "en": "English" }
 }

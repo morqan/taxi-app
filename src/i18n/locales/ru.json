@@ -57,13 +57,23 @@
   },
   "driverOrder": {
     "title": "Заказ",
+    "route": "Маршрут",
+    "price": "Цена",
     "cancel": "Отменить",
     "rate": "Оценить",
     "driver": "Водитель",
+    "driverSearching": "Поиск водителя...",
     "status": "Статус",
-    "notFound": "Заказ не найден"
+    "notFound": "Заказ не найден",
+    "statusLabels": {
+      "searching": "Поиск",
+      "accepted": "Принят",
+      "inProgress": "В пути",
+      "completed": "Завершён",
+      "cancelled": "Отменён"
+    }
   },
-  "news": { "title": "Новости" },
+  "news": { "title": "Новости", "empty": "Новостей нет" },
   "country": { "title": "Код страны" },
   "language": { "az": "Азербайджанский", "ru": "Русский", "en": "Английский" }
 }

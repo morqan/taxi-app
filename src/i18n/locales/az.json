@@ -57,13 +57,23 @@
   },
   "driverOrder": {
     "title": "Sifariş",
+    "route": "Marşrut",
+    "price": "Qiymət",
     "cancel": "Ləğv et",
     "rate": "Qiymətləndir",
     "driver": "Sürücü",
+    "driverSearching": "Sürücü axtarılır...",
     "status": "Status",
-    "notFound": "Sifariş tapılmadı"
+    "notFound": "Sifariş tapılmadı",
+    "statusLabels": {
+      "searching": "Axtarılır",
+      "accepted": "Qəbul edildi",
+      "inProgress": "Yoldadır",
+      "completed": "Tamamlandı",
+      "cancelled": "Ləğv edildi"
+    }
   },
-  "news": { "title": "Xəbərlər" },
+  "news": { "title": "Xəbərlər", "empty": "Xəbər yoxdur" },
   "country": { "title": "Ölkə kodu" },
   "language": { "az": "Azərbaycan", "ru": "Rus", "en": "İngilis" }
 }
