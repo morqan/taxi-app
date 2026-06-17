@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, FlatList, Text, View } from 'react-native';
 
 import type { Transaction } from '@/api/types';
@@ -13,6 +14,7 @@ function renderTransaction({ item }: { item: Transaction }) {
     <Card className="mb-3">
       <View className="flex-row items-center justify-between gap-3">
         <View className="flex-1">
+          {/* description/createdAt/currency — данные транзакции (контент), не переводим */}
           <Text className="text-base font-medium text-text">{item.description}</Text>
           <Text className="text-sm text-muted">{item.createdAt}</Text>
         </View>
@@ -29,6 +31,8 @@ function renderTransaction({ item }: { item: Transaction }) {
 }
 
 export function BalanceScreen() {
+  const { t } = useTranslation();
+  // useGetBalanceQuery — RTK Query: баланс + список операций с сервера
   const { data: balance, isLoading, isError } = useGetBalanceQuery();
 
   if (isLoading) {
@@ -41,11 +45,12 @@ export function BalanceScreen() {
     );
   }
 
+  // Ошибка запроса или пустой ответ → общий текст ошибки загрузки (common.loadError)
   if (isError || !balance) {
     return (
       <Screen>
-        <Text className="py-4 text-2xl font-medium text-text">Balans</Text>
-        <Text className="text-base text-muted">Balans yüklənə bilmədi</Text>
+        <Text className="py-4 text-2xl font-medium text-text">{t('balance.title')}</Text>
+        <Text className="text-base text-muted">{t('common.loadError')}</Text>
       </Screen>
     );
   }
@@ -54,20 +59,21 @@ export function BalanceScreen() {
 
   return (
     <Screen>
-      <Text className="py-4 text-2xl font-medium text-text">Balans</Text>
+      <Text className="py-4 text-2xl font-medium text-text">{t('balance.title')}</Text>
       <Card className="mb-6 items-center py-6">
-        <Text className="text-sm text-muted">Cari balans</Text>
+        <Text className="text-sm text-muted">{t('balance.current')}</Text>
+        {/* amount/currency — данные баланса (контент), не переводим */}
         <Text className="text-4xl font-medium text-text">
           {balance.amount} {balance.currency}
         </Text>
       </Card>
-      <Button title="Balansı artır" onPress={() => {}} />
-      <Text className="py-4 text-lg font-medium text-text">Əməliyyatlar</Text>
+      <Button title={t('balance.topUp')} onPress={() => {}} />
+      <Text className="py-4 text-lg font-medium text-text">{t('balance.transactions')}</Text>
       <FlatList
         data={transactions}
         keyExtractor={(item) => item.id}
         renderItem={renderTransaction}
-        ListEmptyComponent={<Text className="text-base text-muted">Əməliyyat yoxdur</Text>}
+        ListEmptyComponent={<Text className="text-base text-muted">{t('balance.empty')}</Text>}
         showsVerticalScrollIndicator={false}
       />
     </Screen>

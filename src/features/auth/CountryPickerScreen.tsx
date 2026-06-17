@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FlatList, Pressable, Text, View } from 'react-native';
 
 import { Screen } from '@/components/ui/Screen';
@@ -12,6 +13,8 @@ interface CountryCode {
   name: string;
 }
 
+// Названия стран и телефонные коды — это контент (данные), а не UI-строки,
+// поэтому они не переводятся через i18n и остаются как есть.
 const COUNTRIES: readonly CountryCode[] = [
   { code: 'AZ', dialCode: '+994', name: 'Azərbaycan' },
   { code: 'TR', dialCode: '+90', name: 'Türkiyə' },
@@ -25,6 +28,7 @@ const COUNTRIES: readonly CountryCode[] = [
 
 export function CountryPickerScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const { t } = useTranslation();
 
   const handleSelect = useCallback(
     (_country: CountryCode) => {
@@ -38,7 +42,7 @@ export function CountryPickerScreen() {
 
   return (
     <Screen>
-      <Text className="py-4 text-2xl font-medium text-text">Ölkə kodu</Text>
+      <Text className="py-4 text-2xl font-medium text-text">{t('country.title')}</Text>
       <FlatList
         data={COUNTRIES}
         keyExtractor={(item) => item.code}
