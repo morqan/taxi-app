@@ -17,6 +17,7 @@ module.exports = tseslint.config(
       'babel.config.js',
       'metro.config.js',
       'eslint.config.js',
+      'tailwind.config.js',
     ],
   },
   js.configs.recommended,
